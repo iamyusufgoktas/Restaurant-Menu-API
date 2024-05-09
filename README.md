@@ -91,7 +91,7 @@ It returns True if all ingredients are vegan, False otherwise.
 ### Listing the Menu
 
 ```bash
-$curl http://localhost:8080/listMeals
+$ curl http://localhost:8080/listMeals
 ```
 
 Example JSON output:
@@ -101,7 +101,7 @@ Example JSON output:
 ### Getting an Item from Menu
 
 ```bash
-$curl http://localhost:8080/getMeal?id=2
+$ curl http://localhost:8080/getMeal?id=2
 ```
 
 Example JSON output:
@@ -111,7 +111,7 @@ Example JSON output:
 
 Example JSON output:
 ```bash
-$curl -d "meal_id=3&Chicken=medium" -X POST http://localhost:8080/quality
+$ curl -d "meal_id=3&Chicken=medium" -X POST http://localhost:8080/quality
 {"quality": {"quality_scores": 25.0, "ingredient_quality": {"Chicken": 20, "Vegetables": 30}}}
 ```
 ![alt text](https://github.com/iamyusufgoktas/Yusuf-Goktas-otsimo-internship-task-2024/blob/main/images/3.png)
@@ -119,7 +119,7 @@ $curl -d "meal_id=3&Chicken=medium" -X POST http://localhost:8080/quality
 If there is no ingredient with the given ID in the entered parameters, it will give an error message
 
 ```bash
-$curl -d "meal_id=3&Chicken=medium&Rice=medium&Wine=low" -X POST http://localhost:8080/quality
+$ curl -d "meal_id=3&Chicken=medium&Rice=medium&Wine=low" -X POST http://localhost:8080/quality
 {"error": "The following ingredients are not part of meal 3: Rice, Wine"}
 ```
 ![alt text](https://github.com/iamyusufgoktas/Yusuf-Goktas-otsimo-internship-task-2024/blob/main/images/3.1.png)
@@ -128,7 +128,7 @@ $curl -d "meal_id=3&Chicken=medium&Rice=medium&Wine=low" -X POST http://localhos
 ### Price Calculation With Ingredient Qualities
 
 ```bash
-$curl -d "meal_id=3&Chicken=low" -X POST http://localhost:8080/price  
+$ curl -d "meal_id=3&Chicken=low" -X POST http://localhost:8080/price  
 {"price": 2.36}%
 ```
 ![alt text](https://github.com/iamyusufgoktas/Yusuf-Goktas-otsimo-internship-task-2024/blob/main/images/4.png)
@@ -136,7 +136,7 @@ $curl -d "meal_id=3&Chicken=low" -X POST http://localhost:8080/price
 If there is no ingredient with the given ID in the entered parameters, it will give an error message
 
 ```bash
-$curl -d "meal_id=3&Chicken=low&Tofu=medium" -X POST http://localhost:8080/price
+$ curl -d "meal_id=3&Chicken=low&Tofu=medium" -X POST http://localhost:8080/price
 {"error": "The following ingredients are not part of meal 3: Tofu"}
 ```
 ![alt text](https://github.com/iamyusufgoktas/Yusuf-Goktas-otsimo-internship-task-2024/blob/main/images/4.1.png)
@@ -145,10 +145,10 @@ $curl -d "meal_id=3&Chicken=low&Tofu=medium" -X POST http://localhost:8080/price
 ### I'm Feeling Lucky
 
 ```bash
-$curl -d "budget=3.5" -X POST http://localhost:8080/random
+$ curl -d "budget=3.5" -X POST http://localhost:8080/random
 {"id": 8, "name": "Vegetarian stir-fry with tofu", "price": 2.1, "quality_score": 23, "ingredients": [{"name": "Tofu", "quality": "high"}, {"name": "Rice", "quality": "high"}, {"name": "Vegetables", "quality": "low"}]}
 
-$curl -d "budget=3.5" -X POST http://localhost:8080/random
+$ curl -d "budget=3.5" -X POST http://localhost:8080/random
 {"id": 9, "name": "Fruit salad with mixed berries and yogurt", "price": 1.64, "quality_score": 10, "ingredients": [{"name": "Mixed berries", "quality": "low"}, {"name": "Yogurt", "quality": "low"}]}
 ```
 ![alt text](https://github.com/iamyusufgoktas/Yusuf-Goktas-otsimo-internship-task-2024/blob/main/images/5.png)
@@ -157,7 +157,7 @@ $curl -d "budget=3.5" -X POST http://localhost:8080/random
 If no menu is found within the given budget, it will give an error message.
 
 ```bash
-$curl -d "budget=0.5" -X POST http://localhost:8080/random
+$ curl -d "budget=0.5" -X POST http://localhost:8080/random
 {"error": "No menu suitable for your budget was found"}
 ```
 ![alt text](https://github.com/iamyusufgoktas/Yusuf-Goktas-otsimo-internship-task-2024/blob/main/images/5.1.png)
@@ -165,10 +165,10 @@ $curl -d "budget=0.5" -X POST http://localhost:8080/random
 ### Searching For a Meal
 
 ```bash
-$curl http://localhost:8080/search\?query\=milk
+$ curl http://localhost:8080/search\?query\=milk
 []
 
-$curl http://localhost:8080/search\?query\=beef
+$ curl http://localhost:8080/search\?query\=beef
 [{"id": 4, "name": "Beef stir-fry with rice", "ingredients": ["Beef", "Rice", "Vegetables"]}]
 ```
 ![alt text](https://github.com/iamyusufgoktas/Yusuf-Goktas-otsimo-internship-task-2024/blob/main/images/6.png)
@@ -176,10 +176,10 @@ $curl http://localhost:8080/search\?query\=beef
 ### Finding the Highest Quality Meal For Given Budget
 
 ```bash
-$curl -d "budget=3.5&is_vegetarian=false&is_vegan=false" -X POST http://localhost:8080/findHighest
+$ curl -d "budget=3.5&is_vegetarian=false&is_vegan=false" -X POST http://localhost:8080/findHighest
 {"menu_id": 8, "menu_name": "Vegetarian stir-fry with tofu", "price": 3.2, "quality_score": 30.0, "ingredients": {"Tofu": "High", "Rice": "High", "Vegetables": "High"}}
 
-$curl -d "budget=0.91&is_vegetarian=false&is_vegan=false" -X POST http://localhost:8080/findHighest
+$ curl -d "budget=0.91&is_vegetarian=false&is_vegan=false" -X POST http://localhost:8080/findHighest
 {"menu_id": 1, "menu_name": "Rice and chicken bowl", "price": 0.8, "quality_score": 20.0, "ingredients": {"Rice": "High", "Chicken": "Low"}}
 ```
 ![alt text](https://github.com/iamyusufgoktas/Yusuf-Goktas-otsimo-internship-task-2024/blob/main/images/7.png)
@@ -187,7 +187,7 @@ $curl -d "budget=0.91&is_vegetarian=false&is_vegan=false" -X POST http://localho
 If no menu is found within the given budget, it will give an error message.
 
 ```bash
-$curl -d "budget=0.5&is_vegetarian=false&is_vegan=false" -X POST http://localhost:8080/findHighest
+$ curl -d "budget=0.5&is_vegetarian=false&is_vegan=false" -X POST http://localhost:8080/findHighest
 {"error": "No suitable meal found within the budget"}
 ```
 ![alt text](https://github.com/iamyusufgoktas/Yusuf-Goktas-otsimo-internship-task-2024/blob/main/images/7.1.png)
@@ -195,7 +195,7 @@ $curl -d "budget=0.5&is_vegetarian=false&is_vegan=false" -X POST http://localhos
 ### Finding the Highest Quality Version of a Meal For Given Budget
 
 ```bash
-$curl -d "budget=3.4&meal_id=2&is_vegan=false" -X POST http://localhost:8080/findHighestOfMeal
+$ curl -d "budget=3.4&meal_id=2&is_vegan=false" -X POST http://localhost:8080/findHighestOfMeal
 {"id": 2, "name": "Pasta with marinara sauce and vegetables", "price": 2.97, "quality_score": 23.333333333333332, "ingredients": {"Pasta": "High", "Marinara sauce": "Low", "Vegetables": "High"}}
 ```
 ![alt text](https://github.com/iamyusufgoktas/Yusuf-Goktas-otsimo-internship-task-2024/blob/main/images/8.png)
@@ -203,7 +203,7 @@ $curl -d "budget=3.4&meal_id=2&is_vegan=false" -X POST http://localhost:8080/fin
 If it cannot find a suitable meal within the budget for the specified meal ID, it will give an error message.
 
 ```bash
-$curl -d "budget=2.4&meal_id=7&is_vegan=false" -X POST http://localhost:8080/findHighestOfMeal
+$ curl -d "budget=2.4&meal_id=7&is_vegan=false" -X POST http://localhost:8080/findHighestOfMeal
 {"error": "No suitable meal found within the budget for the specified meal ID"}
 ```
 ![alt text](https://github.com/iamyusufgoktas/Yusuf-Goktas-otsimo-internship-task-2024/blob/main/images/8.1.png)
