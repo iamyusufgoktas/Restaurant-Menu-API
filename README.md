@@ -1,6 +1,4 @@
-# Yusuf-Goktas-otsimo-internship-task-2024
- 
-## Features
+ ## Features
 
 ### load_menu_from_file(file_path)
 
